@@ -54,6 +54,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_02_231224) do
 
   create_table "listings", force: :cascade do |t|
     t.integer "price"
+    t.datetime "sold_at"
     t.bigint "print_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -63,6 +64,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_02_231224) do
   create_table "prints", force: :cascade do |t|
     t.integer "serial_number"
     t.string "format"
+    t.boolean "vintage", default: false
     t.bigint "artwork_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

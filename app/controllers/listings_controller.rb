@@ -1,5 +1,6 @@
 class ListingsController < ApplicationController
   def index
-    @listings = Listing.all
+    @filter = ListingFilter.create
+    @pagy, @listings = pagy(@filter.results)
   end
 end

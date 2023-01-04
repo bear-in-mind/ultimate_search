@@ -16,6 +16,8 @@ class ListingFilter < AllFutures::Base
   attribute :direction, :string, default: "desc"
 
   def results
+    # Step 1
+    # Doesn't work because pg_search doesn't play well with joined scopes and associations
     # Listing.for_sale
     #   .price_between(min_price, max_price)
     #   .factory_sealed(only_new_prints)
@@ -24,6 +26,7 @@ class ListingFilter < AllFutures::Base
     #   .with_formats(format)
     #   .search(query)
     
+    # Step 2
     filtered_listings_ids = Listing.for_sale
       .price_between(min_price, max_price)
       .factory_sealed(only_new_prints)

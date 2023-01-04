@@ -42,6 +42,7 @@ gem "redis", "~> 4.0"
 gem "stimulus_reflex", github: "stimulusreflex/stimulus_reflex", branch: "new_installer"
 gem "all_futures", github: "leastbad/all_futures", branch: "master"
 gem "pg_search"
+gem "pagy"
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
@@ -57,6 +58,7 @@ group :development, :test do
 end
 
 group :development do
+  gem "annotate"
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 

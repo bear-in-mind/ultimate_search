@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: listings
+#
+#  id         :bigint           not null, primary key
+#  price      :integer
+#  sold_at    :datetime
+#  print_id   :bigint           not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 class Listing < ApplicationRecord
   include PgSearch::Model
 

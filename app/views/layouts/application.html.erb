@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-full bg-gray-100">
   <head>
     <title>UltimateSearch</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -11,9 +11,13 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
-    </main>
+  <body class="h-full">
+    <div class="min-h-full">
+      <main>
+        <div class="mx-auto max-w-7xl py-16 sm:px-6 lg:px-8">
+          <%= yield %> 
+        </div>
+      </main>
+    </div>
   </body>
 </html>

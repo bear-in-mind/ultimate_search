@@ -105,7 +105,7 @@ Artwork.transaction do
   
   [depardon_1 ,depardon_2 ,erwitt_1 ,erwitt_2 ,gilden_1 ,gilden_2].each do |vintage_artwork|
     # Creating a unique print and a unique listing for each
-    print = vintage_artwork.prints.create(serial_number: rand(500), format: Print::FORMATS.sample, vintage: true)
+    print = vintage_artwork.prints.create(serial_number: rand(500), format: Print::FORMATS.sample, factory_sealed: false)
     print.listings.create(price: rand(2000..5000))
   end
 

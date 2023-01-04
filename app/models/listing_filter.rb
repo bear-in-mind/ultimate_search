@@ -35,6 +35,6 @@ class ListingFilter < AllFutures::Base
       .with_formats(format)
       .pluck(:id)
     
-    Listing.where(id: filtered_listings_ids).search(query)
+    Listing.where(id: filtered_listings_ids).search(query).limit(200)
   end
 end

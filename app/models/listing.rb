@@ -14,7 +14,10 @@ class Listing < ApplicationRecord
 
   belongs_to :print
   has_one :artwork, through: :print
+
+  delegate :name, :cover_image, to: :artwork
   
+  scope :search, ->(query) { basic_search(query) if query.present? }
   scope :for_sale, -> { where(sold_at: nil) }
   scope :price_between, ->(min, max) { where(price: min..max) }
   # scope :price_between, ->(min, max) { where("listings.price BETWEEN ? and ?", min, max) }
@@ -24,7 +27,7 @@ class Listing < ApplicationRecord
   # Will work as an OR filter
   scope :with_tags, ->(options) { joins(:artwork).where("artworks.tags && ?", "{#{options.join(",")}}") if options.present? }
 
-  pg_search_scope :search, associated_against: {
+  pg_search_scope :basic_search, associated_against: {
     artwork: [:name, :author]
   } 
 

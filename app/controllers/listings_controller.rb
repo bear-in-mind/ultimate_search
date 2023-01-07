@@ -1,5 +1,4 @@
 class ListingsController < ApplicationController
-  include CableReady::Broadcaster
   include Pagy::Backend
 
   def index

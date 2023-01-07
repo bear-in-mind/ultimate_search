@@ -1,41 +1,8 @@
+/* @import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "./components/pagy.css";
+@import "tailwindcss/utilities"; */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-.pagy-nav,
-.pagy-nav-js {
-  @apply flex space-x-2;
-}
-
-.pagy-nav .page a,
-.pagy-nav .page.prev.disabled,
-.pagy-nav .page.next.disabled {
-  @apply block rounded-lg px-3 py-1 text-sm text-gray-500;
-  &:hover{
-    @apply bg-indigo-300;
-  }
-  &:active{
-    @apply bg-indigo-400 text-white;
-  }
-}
-
-.pagy-nav .page.prev.disabled,
-.pagy-nav .page.next.disabled {
-  @apply text-gray-400 cursor-default;
-  &:hover {
-    @apply text-gray-400 bg-gray-200;
-  }
-  &:active {
-    @apply text-gray-400 bg-gray-200;
-  }
-}
-
-.pagy-nav .page.active {
-  @apply text-white cursor-default bg-indigo-400;
-  &:hover {
-    @apply text-indigo bg-gray-400;
-  }
-  &:active {
-    @apply bg-indigo-400 text-white;
-  }
-}

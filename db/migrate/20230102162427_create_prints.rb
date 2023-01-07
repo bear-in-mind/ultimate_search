@@ -3,7 +3,7 @@ class CreatePrints < ActiveRecord::Migration[7.0]
     create_table :prints do |t|
       t.integer :serial_number
       t.string :format
-      t.boolean :factory_sealed, default: true
+      t.string :condition, default: "new"
       t.references :artwork, null: false, foreign_key: true
 
       t.timestamps

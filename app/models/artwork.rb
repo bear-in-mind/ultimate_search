@@ -13,14 +13,21 @@
 #
 class Artwork < ApplicationRecord
   TAGS = %w[
-    black_and_white
-    color
-    landscape
-    street
+    B&W
+    Color
+    Landscape
+    Street
     Paris
     USA
-    animals
-    sunset
+    Animals
+    Sunset
+    Cinema
+  ]
+
+  CATEGORIES = %w[
+    illustration
+    poster
+    photography
   ]
   
   has_many :prints, dependent: :destroy

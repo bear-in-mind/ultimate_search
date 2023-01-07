@@ -12,7 +12,7 @@ def create_poster(name, filename)
     category: "poster",
     author: "Paul Bijaoui",
     year: (2010..2022).to_a.sample,
-    tags: ['cinema']
+    tags: ['Cinema']
   )
   file = File.open(Rails.root.join("artworks", "#{filename}.webp"))
   artwork.cover_image.attach(io: file, filename: file.path)
@@ -50,39 +50,39 @@ Artwork.transaction do
   create_poster "Top Gun", "top_gun"
 
   puts "Creating photos"
-  create_photo "Pont Charles de Gaulle", "photo-01", %w[color sunset landscape Paris]
-  create_photo "Oiseau", "photo-02", %w[black_and_white animals]
-  create_photo "Notre-Dame de Paris", "photo-03", %w[color Paris]
-  create_photo "Sortie du Métro", "photo-04", %w[color Paris street]
-  create_photo "Food", "photo-05", %w[black_and_white animals]
-  create_photo "Nénette", "photo-07", %w[black_and_white animals]
-  create_photo "Ile Saint-Louis", "photo-08", %w[black_and_white Paris street]
-  create_photo "Place de la Concorde", "photo-09", %w[black_and_white Paris street]
-  create_photo "Paris IXe", "photo-10", %w[black_and_white Paris street]
-  create_photo "Jardin d'Acclimatation", "photo-11", %w[color animals]
-  create_photo "Coney Island", "photo-12", %w[color street USA]
-  create_photo "Echo Park", "photo-13", %w[color animals USA]
-  create_photo "San Francisco Bay", "photo-14", %w[black_and_white landscape USA]
-  create_photo "Beatty, Nevada", "photo-15", %w[color landscape USA]
-  create_photo "Detroit", "photo-16", %w[black_and_white street USA]
-  create_photo "Corsica", "photo-17", %w[color animals]
-  create_photo "Detroit", "photo-18", %w[color street USA]
-  create_photo "Erbalunga", "photo-19", %w[color sunset landscape]
-  create_photo "Canal Saint Martin", "photo-20", %w[black_and_white animals Paris street]
-  create_photo "Paris XIII", "photo-21", %w[color Paris street]
-  create_photo "Oaxaca in gold", "photo-23", %w[color street]
-  create_photo "Oaxaca in blue", "photo-25", %w[color street sunset]
-  create_photo "Cuajimoloyas", "photo-24", %w[color landscape]
-  create_photo "Tunnel View", "photo-26", %w[color landscape USA]
-  create_photo "Valley View", "photo-27", %w[black_and_white landscape USA]
+  create_photo "Pont Charles de Gaulle", "photo-01", %w[Color Sunset Landscape Paris]
+  create_photo "Oiseau", "photo-02", %w[B&W Animals]
+  create_photo "Notre-Dame de Paris", "photo-03", %w[Color Paris]
+  create_photo "Sortie du Métro", "photo-04", %w[Color Paris Street]
+  create_photo "Food", "photo-05", %w[B&W Animals]
+  create_photo "Nénette", "photo-07", %w[B&W Animals]
+  create_photo "Ile Saint-Louis", "photo-08", %w[B&W Paris Street]
+  create_photo "Place de la Concorde", "photo-09", %w[B&W Paris Street]
+  create_photo "Paris IXe", "photo-10", %w[B&W Paris Street]
+  create_photo "Jardin d'Acclimatation", "photo-11", %w[Color Animals]
+  create_photo "Coney Island", "photo-12", %w[Color Street USA]
+  create_photo "Echo Park", "photo-13", %w[Color Animals USA]
+  create_photo "San Francisco Bay", "photo-14", %w[B&W Landscape USA]
+  create_photo "Beatty, Nevada", "photo-15", %w[Color Landscape USA]
+  create_photo "Detroit", "photo-16", %w[B&W Street USA]
+  create_photo "Corsica", "photo-17", %w[Color Animals]
+  create_photo "Detroit", "photo-18", %w[Color Street USA]
+  create_photo "Erbalunga", "photo-19", %w[Color Sunset Landscape]
+  create_photo "Canal Saint Martin", "photo-20", %w[B&W Animals Paris Street]
+  create_photo "Paris XIII", "photo-21", %w[Color Paris Street]
+  create_photo "Oaxaca in gold", "photo-23", %w[Color Street]
+  create_photo "Oaxaca in blue", "photo-25", %w[Color Street Sunset]
+  create_photo "Cuajimoloyas", "photo-24", %w[Color Landscape]
+  create_photo "Tunnel View", "photo-26", %w[Color Landscape USA]
+  create_photo "Valley View", "photo-27", %w[B&W Landscape USA]
 
   puts "Creating photos for vintage prints"
-  depardon_1 = create_photo "Liban", "depardon-2", %w[color street], author: "Raymond Depardon", year: 1972
-  depardon_2 = create_photo "Chambre", "depardon-1", %w[color], author: "Raymond Depardon", year: 1986
-  erwitt_1 = create_photo "Untitled", "erwitt-1", %w[black_and_white animals street], author: "Elliott Erwitt", year: 1965
-  erwitt_2 = create_photo "Bulldog", "erwitt-2", %w[black_and_white animals], author: "Elliott Erwitt", year: 1968
-  gilden_1 = create_photo "Yakuzas", "gilden-1", %w[black_and_white street], author: "Bruce Gilden", year: 1976
-  gilden_2 = create_photo "Brooklyn party", "gilden-2", %w[black_and_white street USA], author: "Bruce Gilden", year: 1980
+  depardon_1 = create_photo "Liban", "depardon-2", %w[Color Street], author: "Raymond Depardon", year: 1972
+  depardon_2 = create_photo "Chambre", "depardon-1", %w[Color], author: "Raymond Depardon", year: 1986
+  erwitt_1 = create_photo "Untitled", "erwitt-1", %w[B&W Animals Street], author: "Elliott Erwitt", year: 1965
+  erwitt_2 = create_photo "Bulldog", "erwitt-2", %w[B&W Animals], author: "Elliott Erwitt", year: 1968
+  gilden_1 = create_photo "Yakuzas", "gilden-1", %w[B&W Street], author: "Bruce Gilden", year: 1976
+  gilden_2 = create_photo "Brooklyn party", "gilden-2", %w[B&W Street USA], author: "Bruce Gilden", year: 1980
 
   puts "Creating prints"
   Artwork.posters.each do |poster|
@@ -105,7 +105,7 @@ Artwork.transaction do
   
   [depardon_1 ,depardon_2 ,erwitt_1 ,erwitt_2 ,gilden_1 ,gilden_2].each do |vintage_artwork|
     # Creating a unique print and a unique listing for each
-    print = vintage_artwork.prints.create(serial_number: rand(500), format: Print::FORMATS.sample, factory_sealed: false)
+    print = vintage_artwork.prints.create(serial_number: rand(500), format: Print::FORMATS.sample)
     print.listings.create(price: rand(2000..5000))
   end
 

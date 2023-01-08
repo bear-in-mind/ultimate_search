@@ -18,12 +18,12 @@ class Listing < ApplicationRecord
   delegate :name, :cover_image, :author, to: :artwork
   
   scope :for_sale,        -> { where(sold_at: nil) }
-  scope :search,          ->(query) { basic_search(query) if query.present? }
   scope :price_between,   ->(min, max) { where(price: min..max) }
   scope :with_formats,    ->(options) { joins(:print).where(prints: {format: options}) if options.present? }
   scope :from_categories, ->(options) { joins(:artwork).where(artworks: {category: options}) if options.present? }
   # Will work as an OR filter
   scope :with_tags,       ->(options) { joins(:artwork).where("artworks.tags && ?", "{#{options.join(",")}}") if options.present? }
+  scope :search,          ->(query) { basic_search(query) if query.present? }
 
   pg_search_scope :basic_search, associated_against: {
     artwork: [:name, :author]

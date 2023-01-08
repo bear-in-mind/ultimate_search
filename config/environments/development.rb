@@ -51,6 +51,8 @@ config.cache_store = :redis_cache_store, {
   # Raise exceptions for disallowed deprecations.
   config.active_support.disallowed_deprecation = :raise
 
+  config.action_controller.default_url_options = {host: "localhost", port: 3000}
+
   # Tell Active Support which deprecation messages to disallow.
   config.active_support.disallowed_deprecation_warnings = []
 

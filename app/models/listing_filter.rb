@@ -10,7 +10,7 @@ class ListingFilter < AllFutures::Base
   attribute :items, :integer, default: 16
   attribute :page, :integer, default: 1
   # Sorting
-  attribute :order, :string, default: "created_at"
+  attribute :order_by, :string, default: "created_at"
   attribute :direction, :string, default: "desc"
 
   def results
@@ -23,6 +23,7 @@ class ListingFilter < AllFutures::Base
     #   .with_tags(tags)
     #   .with_formats(format)
     #   .search(query)
+    #   .order(order => direction)
     
     # Step 2
     filtered_listings_ids = Listing.for_sale
@@ -32,6 +33,12 @@ class ListingFilter < AllFutures::Base
       .with_formats(format)
       .pluck(:id)
     
-    Listing.where(id: filtered_listings_ids).search(query).limit(200)
+    Listing
+      .joins(:artwork)
+      .includes(artwork: {cover_image_attachment: :blob})
+      .where(id: filtered_listings_ids)
+      .search(query)
+      .order(order_by => direction)
+      .limit(200)
   end
 end

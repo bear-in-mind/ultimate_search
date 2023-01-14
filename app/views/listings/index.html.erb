@@ -3,32 +3,25 @@
     <div class="flex items-baseline justify-between border-b border-gray-200 pt-24 pb-6">
       <h1 class="text-4xl font-bold tracking-tight text-gray-900">Our limited prints</h1>
 
-      <div class="flex items-center">
-        <div class="relative inline-block text-left">
-          <div>
-            <button type="button" class="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900" id="menu-button" aria-expanded="false" aria-haspopup="true">
-              Sort
-              <svg class="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-              </svg>
+      <div class="flex items-center z-10">
+        <div class="group relative inline-block text-left" tabindex="-1">
+          <span class="rounded-md shadow-sm">
+            <button class="active:shadow-outline-blue inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium leading-5 text-gray-700 focus-within:outline focus-within:outline-2 focus-within:border-transparent focus-within:outline-blue-500 hover:text-gray-500 active:bg-gray-50 active:text-gray-800" type="button" aria-haspopup="true">
+              <span>Sort</span>
+
+              <svg class="ml-2 -mr-1 h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
             </button>
-          </div>
-          <div class="hidden right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
-            <div class="py-1" role="none">
-              <!--
-                Active: "bg-gray-100", Not Active: ""
-
-                Selected: "font-medium text-gray-900", Not Selected: "text-gray-500"
-              -->
-              <a href="#" class="font-medium text-gray-900 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Most Popular</a>
-
-              <a href="#" class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">Best Rating</a>
-
-              <a href="#" class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2">Newest</a>
-
-              <a href="#" class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-3">Price: Low to High</a>
-
-              <a href="#" class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-4">Price: High to Low</a>
+          </span>
+          <div class="invisible origin-top-right -translate-y-2 scale-95 transform opacity-0 transition-all duration-300 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:scale-100 group-focus-within:opacity-100">
+            <div class="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md border border-gray-200 bg-white shadow-lg outline-none" role="menu">
+              <div class="py-1">
+                <a data-reflex="click->Listing#sort" data-column="listings.created_at" data-direction="desc" href="#" class="flex w-full justify-between px-4 py-2 text-left text-sm leading-5 text-gray-700 focus-visible:outline-1 focus-visible:outline-blue-500" role="menuitem">Recently added</a>
+                <a data-reflex="click->Listing#sort" data-column="listings.price" data-direction="asc" href="#" class="flex w-full justify-between px-4 py-2 text-left text-sm leading-5 text-gray-700 focus-visible:outline-1 focus-visible:outline-blue-500" role="menuitem">Price: Low to High</a>
+                <a data-reflex="click->Listing#sort" data-column="listings.price" data-direction="desc" href="#" class="flex w-full justify-between px-4 py-2 text-left text-sm leading-5 text-gray-700 focus-visible:outline-1 focus-visible:outline-blue-500" role="menuitem">Price: High to Low</a>
+                <a data-reflex="click->Listing#sort" data-column="artwork.year" data-direction="asc" href="#" class="flex w-full justify-between px-4 py-2 text-left text-sm leading-5 text-gray-700 focus-visible:outline-1 focus-visible:outline-blue-500" role="menuitem">Year: Old to Recent</a>
+                <a data-reflex="click->Listing#sort" data-column="artwork.year" data-direction="desc" href="#" class="flex w-full justify-between px-4 py-2 text-left text-sm leading-5 text-gray-700 focus-visible:outline-1 focus-visible:outline-blue-500" role="menuitem">Year: Recent to Old</a>
+                <a data-reflex="click->Listing#sort" data-column="print.serial_number" data-direction="asc" href="#" class="flex w-full justify-between px-4 py-2 text-left text-sm leading-5 text-gray-700 focus-visible:outline-1 focus-visible:outline-blue-500" role="menuitem">Serial number: Low to High</a>
+              </div>
             </div>
           </div>
         </div>
@@ -49,7 +42,7 @@
                   <label for="min-price">Minimum Price:</label>
                   <span><output id="minPrice">50</output> $</span>
                 </div>
-                <input type="range" name="min-price" min="50" max="1000" value="50" class="accent-indigo-600" oninput="document.getElementById('minPrice').value = this.value">
+                <input type="range" data-reflex="change->Listing#min_price" name="min-price" min="50" max="1000" value="50" class="accent-indigo-600" oninput="document.getElementById('minPrice').value = this.value">
                 <div class="text-sm text-gray-600 flex justify-between">
                   <label for="max-price">Maximum Price:</label>
                   <span><output id="maxPrice">500</output> $</span>

@@ -39,7 +39,6 @@ gem "redis", "~> 4.0"
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
-gem "stimulus_reflex", github: "stimulusreflex/stimulus_reflex", branch: "new_installer"
 gem "all_futures", github: "leastbad/all_futures", branch: "master"
 gem "pg_search"
 gem "pagy"
@@ -76,3 +75,5 @@ gem "action-cable-redis-backport", "~> 1"
 gem "redis-session-store", "~> 0.11.5"
 
 gem "permessage_deflate", ">= 0.1"
+
+gem "stimulus_reflex", "= 3.5.0.pre8"

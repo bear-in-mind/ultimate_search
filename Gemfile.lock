@@ -11,22 +11,6 @@ GIT
       kredis (~> 1.0)
       ulid (~> 1.3)
 
-GIT
-  remote: https://github.com/stimulusreflex/stimulus_reflex.git
-  revision: e3b929ccecf55eada67c3369f5df1d04c0f43214
-  branch: new_installer
-  specs:
-    stimulus_reflex (3.5.0.pre9)
-      actioncable (>= 5.2)
-      actionpack (>= 5.2)
-      actionview (>= 5.2)
-      activesupport (>= 5.2)
-      cable_ready (>= 5.0.0.pre9)
-      nokogiri
-      rack
-      railties (>= 5.2)
-      redis
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -107,18 +91,15 @@ GEM
     bootsnap (1.15.0)
       msgpack (~> 1.2)
     builder (3.2.4)
-    cable_ready (5.0.0.pre9)
-      actioncable (>= 5.2)
-      actionpack (>= 5.2)
-      actionview (>= 5.2)
-      activerecord (>= 5.2)
-      activesupport (>= 5.2)
-      railties (>= 5.2)
+    cable_ready (5.0.0.pre8)
+      rails (>= 5.2)
       thread-local (>= 1.1.0)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
     date (3.3.3)
     debug (1.7.1)
+      irb (>= 1.5.0)
+      reline (>= 0.3.1)
     diff-lcs (1.5.0)
     erubi (1.12.0)
     globalid (1.0.0)
@@ -128,6 +109,9 @@ GEM
     importmap-rails (1.1.5)
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
+    io-console (0.6.0)
+    irb (1.6.2)
+      reline (>= 0.3.0)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
@@ -204,6 +188,8 @@ GEM
     redis-session-store (0.11.5)
       actionpack (>= 6, < 8)
       redis (>= 3, < 6)
+    reline (0.3.2)
+      io-console (~> 0.5)
     rspec-core (3.12.0)
       rspec-support (~> 3.12.0)
     rspec-expectations (3.12.2)
@@ -230,6 +216,16 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
+    stimulus_reflex (3.5.0.pre8)
+      cable_ready (= 5.0.0.pre8)
+      nokogiri
+      rack
+      rails (>= 5.2)
+      redis
+    tailwindcss-rails (2.0.21)
+      railties (>= 6.0.0)
+    tailwindcss-rails (2.0.21-arm64-darwin)
+      railties (>= 6.0.0)
     tailwindcss-rails (2.0.21-x86_64-darwin)
       railties (>= 6.0.0)
     thor (1.2.1)
@@ -253,6 +249,8 @@ GEM
     zeitwerk (2.6.6)
 
 PLATFORMS
+  arm64-darwin
+  ruby
   x86_64-darwin-20
 
 DEPENDENCIES
@@ -274,7 +272,7 @@ DEPENDENCIES
   rspec-rails (~> 6.0.0)
   sprockets-rails
   stimulus-rails
-  stimulus_reflex!
+  stimulus_reflex (= 3.5.0.pre8)
   tailwindcss-rails
   turbo-rails
   tzinfo-data
@@ -284,4 +282,4 @@ RUBY VERSION
    ruby 3.2.0p0
 
 BUNDLED WITH
-   2.4.2
+   2.4.3

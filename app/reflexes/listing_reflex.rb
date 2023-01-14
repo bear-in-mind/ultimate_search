@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ExampleReflex < ApplicationReflex
+class ListingReflex < ApplicationReflex
   # Add Reflex methods in this file.
   #
   # All Reflex instances include CableReady::Broadcaster and expose the following properties:
@@ -38,7 +38,13 @@ class ExampleReflex < ApplicationReflex
   #
   # Learn more at: https://docs.stimulusreflex.com/rtfm/reflex-classes
 
-  def dance
-    morph "#dance", "I'm dancing!"
+  def sort
+    cable_ready.console_log(message: "Sort !")
+    morph :nothing
+  end
+
+  def min_price
+    cable_ready.console_log(message: "Filter !")
+    morph :nothing
   end
 end

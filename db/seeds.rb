@@ -51,11 +51,11 @@ Artwork.transaction do
 
   puts "Creating photos"
   create_photo "Pont Charles de Gaulle", "photo-01", %w[Color Sunset Landscape Paris]
-  create_photo "Oiseau", "photo-02", %w[B&W Animals]
+  create_photo "Le Marais", "photo-02", %w[B&W Animals]
   create_photo "Notre-Dame de Paris", "photo-03", %w[Color Paris]
-  create_photo "Sortie du Métro", "photo-04", %w[Color Paris Street]
-  create_photo "Food", "photo-05", %w[B&W Animals]
-  create_photo "Nénette", "photo-07", %w[B&W Animals]
+  create_photo "Métro Robespierre", "photo-04", %w[Color Paris Street]
+  create_photo "Boulogne-Billancourt", "photo-05", %w[B&W Animals]
+  create_photo "Jardin des Plantes", "photo-07", %w[B&W Animals]
   create_photo "Ile Saint-Louis", "photo-08", %w[B&W Paris Street]
   create_photo "Place de la Concorde", "photo-09", %w[B&W Paris Street]
   create_photo "Paris IXe", "photo-10", %w[B&W Paris Street]

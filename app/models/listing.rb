@@ -16,6 +16,7 @@ class Listing < ApplicationRecord
   has_one :artwork, through: :print
 
   delegate :name, :cover_image, :author, to: :artwork
+  delegate :serial_number, :format, to: :print
   
   scope :for_sale,        -> { where(sold_at: nil) }
   scope :price_between,   ->(min, max) { where(price: min..max) }
@@ -25,9 +26,13 @@ class Listing < ApplicationRecord
   scope :with_tags,       ->(options) { joins(:artwork).where("artworks.tags && ?", "{#{options.join(",")}}") if options.present? }
   scope :search,          ->(query) { basic_search(query) if query.present? }
 
-  pg_search_scope :basic_search, associated_against: {
-    artwork: [:name, :author]
-  }
+  pg_search_scope :basic_search,
+    associated_against: {
+      artwork: [:name, :author]
+    },
+    using: {
+      tsearch: {prefix: true}
+    }
 
   # Caching the max price to avoid unnecessary queries at each object initialization
   def self.max_price

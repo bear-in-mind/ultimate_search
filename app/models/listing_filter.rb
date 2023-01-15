@@ -2,10 +2,10 @@ class ListingFilter < AllFutures::Base
   SORTING_OPTIONS = [
     {column: "created_at", direction: "desc", text: "Recently added"},
     {column: "price", direction: "asc", text: "Price: Low to High"},
-    {column: "price", direction: "desc", text: "Price: High to Low"},
-    {column: "artworks.year", direction: "asc", text: "Year: Old to Recent"},
-    {column: "artworks.year", direction: "desc", text: "Year: Recent to Old"},
-    {column: "prints.serial_number", direction: "asc", text: "Serial number: Low to High"}
+    {column: "price", direction: "desc", text: "Price: High to Low"}
+    # {column: "artworks.year", direction: "asc", text: "Year: Old to Recent"},
+    # {column: "artworks.year", direction: "desc", text: "Year: Recent to Old"},
+    # {column: "prints.serial_number", direction: "asc", text: "Serial number: Low to High"}
   ]
   # Filters
   attribute :query, :string
@@ -34,6 +34,7 @@ class ListingFilter < AllFutures::Base
     
     # Step 2
     filtered_listings_ids = Listing.for_sale
+      .joins(print: :artwork)
       .price_between(min_price, max_price)
       .from_categories(category)
       .with_tags(tags)
@@ -41,15 +42,14 @@ class ListingFilter < AllFutures::Base
       .pluck(:id)
     
     Listing
-      .joins(:artwork)
       .includes(artwork: {cover_image_attachment: :blob})
       .where(id: filtered_listings_ids)
       .search(query)
-      .order(order_by => direction)
+      .reorder(order_by => direction)
       .limit(200)
   end
 
   def selected_sorting_option
-    @_selected_option ||= SORTING_OPTIONS.find {|option| order_by == option[:column] && direction == option[:direction] }
+    SORTING_OPTIONS.find {|option| order_by == option[:column] && direction == option[:direction] }
   end
 end

@@ -68,29 +68,13 @@
           </div>
 
           <div class="border-b border-gray-200 py-6">
-            <h3 class="-my-3 flow-root text-gray-900 py-3 text-sm font-medium">Condition</h3>
-            <div class="pt-6" id="filter-section-0">
-              <div class="space-y-4">
-                <div class="flex items-center">
-                  <input id="filter-condition-second-hand" checked name="condition[]" value="second_hand" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 checked:ring-indigo-500">
-                  <label for="filter-condition-second-hand" class="ml-3 text-sm text-gray-600">Second hand</label>
-                </div>
-                <div class="flex items-center">
-                  <input id="filter-condition-new" checked name="condition[]" value="new" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 checked:ring-indigo-500">
-                  <label for="filter-condition-new" class="ml-3 text-sm text-gray-600">New prints</label>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="border-b border-gray-200 py-6">
             <h3 class="-my-3 flow-root text-gray-900 py-3 text-sm font-medium">Format</h3>
             <div class="pt-6" id="filter-section-0">
               <div class="space-y-4">
 
                 <% Print::FORMATS.each_with_index do |format, index| %>
                   <div class="flex items-center">
-                    <input id="filter-format-<%= index %>" name="format[]" value="white" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                    <input data-reflex="change->Listing#format" <%= "checked" if @filter.format.include? format %> data-filter_id="<%= @filter.id %>" id="filter-format-<%= index %>" name="format[]" value="<%= format %>" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
                     <label for="filter-format-<%= index %>" class="ml-3 text-sm text-gray-600"><%= format %></label>
                   </div>
                 <% end %>
@@ -124,7 +108,7 @@
                   <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-6 h-6"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </button>
               </span>
-              <input type="search" name="q" value="<%= @filter.query %>" data-filter-id="<%= @filter.id %>" data-reflex="input->Listing#search" class="w-full py-2 text-sm text-white border-gray-300 rounded-md pl-10 focus:outline-none focus:bg-white focus:text-gray-900" placeholder="Search..." autocomplete="off">
+              <input type="search" name="q" value="<%= @filter.query %>" data-filter-id="<%= @filter.id %>" data-reflex="change->Listing#search" class="w-full py-2 text-sm border-gray-300 rounded-md pl-10 focus:outline-none focus:bg-white focus:text-gray-900" placeholder="Search...">
             </div>
             <div class="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 pt-4">
               <% @listings.each do |listing| %>
@@ -151,7 +135,7 @@
           </div>
           <div class="md:flex justify-between px-4">
             <span class="text-gray-500 text-sm"><%== pagy_info(@pagy, item_name: "prints") %></span>
-            <%== pagy_nav(@pagy) %>
+            <%== render "listings/paginator", pagy: @pagy,  %>
           </div>
         </div>
       </div>

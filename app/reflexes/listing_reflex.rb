@@ -20,9 +20,21 @@ class ListingReflex < ApplicationReflex
     end
   end
 
+  def format
+    update_listing_filter do |filter|
+      filter.format = element.value
+    end
+  end
+
   def search
     update_listing_filter do |filter|
       filter.query = element.value
+    end
+  end
+
+  def pagination
+    update_listing_filter do |filter|
+      filter.page = element.value
     end
   end
 

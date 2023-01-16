@@ -228,6 +228,8 @@ GEM
       railties (>= 6.0.0)
     tailwindcss-rails (2.0.21-x86_64-darwin)
       railties (>= 6.0.0)
+    tailwindcss-rails (2.0.21-x86_64-linux)
+      railties (>= 6.0.0)
     thor (1.2.1)
     thread-local (1.1.0)
     timeout (0.3.1)
@@ -252,6 +254,7 @@ PLATFORMS
   arm64-darwin
   ruby
   x86_64-darwin-20
+  x86_64-linux
 
 DEPENDENCIES
   action-cable-redis-backport (~> 1)

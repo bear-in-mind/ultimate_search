@@ -22,6 +22,7 @@ class Artwork < ApplicationRecord
     Animals
     Sunset
     Cinema
+    Music
   ]
 
   CATEGORIES = %w[
@@ -34,6 +35,7 @@ class Artwork < ApplicationRecord
   
   scope :posters, -> { where(category: "poster") }
   scope :photos, -> { where(category: "photography") }
+  scope :illustrations, -> { where(category: "illustration") }
 
   has_one_attached :cover_image
 end

@@ -11,6 +11,16 @@ class ListingsController < ApplicationController
   private
 
   def filter_params
-    params.permit(:query, :min_price, :max_price, :category, :tags, :format, :page, :order_by, :direction)
+    params.permit(
+      :query,
+      :min_price,
+      :max_price,
+      :page, 
+      :order_by, 
+      :direction,
+      category: [],
+      tags: [],
+      format: []
+    )
   end
 end

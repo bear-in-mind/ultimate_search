@@ -26,6 +26,24 @@ class ListingReflex < ApplicationReflex
     end
   end
 
+  def category
+    update_listing_filter do |filter|
+      filter.category = element.value
+    end
+  end
+
+  def tags
+    update_listing_filter do |filter|
+      filter.tags = element.value
+    end
+  end
+
+  def category
+    update_listing_filter do |filter|
+      filter.category = element.value
+    end
+  end
+
   def search
     update_listing_filter do |filter|
       filter.query = element.value

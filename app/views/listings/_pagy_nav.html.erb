@@ -11,6 +11,6 @@
 <%   end                       -%>
 <% end                         -%>
 <% if pagy.next                -%>  <span class="page next"><a class="text-indigo-400 hover:text-indigo-600" href="#" data-reflex="click->Listing#paginate" data-filter-id="<%= filter.id %>" data-page="<%= pagy.next || pagy.last %>">Next</a></span>
-<% else                        -%>  <span class="page next disabled">Next</span>
+<% else                        -%>  <span class="page next text-gray-300">Next</span>
 <% end                         -%>
 <%#                            -%></nav>

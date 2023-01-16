@@ -15,11 +15,12 @@ class Listing < ApplicationRecord
   belongs_to :print
   has_one :artwork, through: :print
 
-  delegate :name, :cover_image, :author, to: :artwork
+  delegate :name, :cover_image, :author, :year, to: :artwork
   delegate :serial_number, :format, to: :print
   
   scope :for_sale,        -> { where(sold_at: nil) }
   scope :price_between,   ->(min, max) { where(price: min..max) }
+  scope :serial_between,   ->(min, max) { joins(:print).where(prints: {serial_number: min..max}) }
   scope :with_formats,    ->(options) { joins(:print).where(prints: {format: options}) if options.present? }
   scope :from_categories, ->(options) { joins(:artwork).where(artworks: {category: options}) if options.present? }
   # Will work as an OR filter

@@ -2,15 +2,17 @@ class ListingFilter < AllFutures::Base
   SORTING_OPTIONS = [
     {column: "created_at", direction: "desc", text: "Recently added"},
     {column: "price", direction: "asc", text: "Price: Low to High"},
-    {column: "price", direction: "desc", text: "Price: High to Low"}
-    # {column: "artworks.year", direction: "asc", text: "Year: Old to Recent"},
-    # {column: "artworks.year", direction: "desc", text: "Year: Recent to Old"},
-    # {column: "prints.serial_number", direction: "asc", text: "Serial number: Low to High"}
+    {column: "price", direction: "desc", text: "Price: High to Low"},
+    {column: "artworks.year", direction: "asc", text: "Year: Old to Recent"},
+    {column: "artworks.year", direction: "desc", text: "Year: Recent to Old"},
+    {column: "prints.serial_number", direction: "asc", text: "Serial number: Low to High"}
   ]
   # Filters
   attribute :query, :string
   attribute :min_price, :integer, default: 1
   attribute :max_price, :integer, default: Listing.max_price
+  attribute :min_serial, :integer, default: 1
+  attribute :max_serial, :integer, default: 100
   attribute :category, :string, array: true, default: []
   attribute :tags, :string, array: true, default: []
   attribute :format, :string, array: true, default: []
@@ -36,6 +38,7 @@ class ListingFilter < AllFutures::Base
     filtered_listings_ids = Listing.for_sale
       .joins(print: :artwork)
       .price_between(min_price, max_price)
+      .serial_between(min_serial, max_serial)
       .from_categories(category)
       .with_tags(tags)
       .with_formats(format)
@@ -44,8 +47,8 @@ class ListingFilter < AllFutures::Base
     Listing
       .includes(artwork: {cover_image_attachment: :blob})
       .where(id: filtered_listings_ids)
-      .search(query)
       .reorder(order_by => direction)
+      .search(query)
       .limit(200)
   end
 

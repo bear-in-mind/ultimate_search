@@ -20,6 +20,18 @@ class ListingReflex < ApplicationReflex
     end
   end
 
+  def min_serial
+    update_listing_filter do |filter|
+      filter.min_serial = element.value.to_i
+    end
+  end
+
+  def max_serial
+    update_listing_filter do |filter|
+      filter.max_serial = element.value.to_i
+    end
+  end
+
   def format
     update_listing_filter do |filter|
       filter.format = element.value

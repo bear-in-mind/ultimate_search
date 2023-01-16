@@ -84,24 +84,24 @@ Artwork.transaction do
   gilden_1 = create_photo "Yakuzas", "gilden-1", %w[B&W Street], author: "Bruce Gilden", year: 1976
   gilden_2 = create_photo "Brooklyn party", "gilden-2", %w[B&W Street USA], author: "Bruce Gilden", year: 1980
 
-  # puts "Creating all prints for every size"
-  # Artwork.posters.each do |poster|
-  #   100.times {|index| poster.prints.create!(serial_number: index + 1, format: "50x60") }
-  # end
-  # Artwork.photos.each do |photo|
-  #   10.times {|index| photo.prints.create!(serial_number: index + 1, format: "50x60") }
-  #   50.times {|index| photo.prints.create!(serial_number: index + 1, format: "30x40") }
-  #   100.times {|index| photo.prints.create!(serial_number: index + 1, format: "18x24") }
-  # end
-  puts "Creating one print per artwork"
+  puts "Creating all prints for every size"
   Artwork.posters.each do |poster|
-    poster.prints.create!(serial_number: rand(100), format: "50x60")
+    100.times {|index| poster.prints.create!(serial_number: index + 1, format: "50x60") }
   end
   Artwork.photos.each do |photo|
-    photo.prints.create!(serial_number: rand(100), format: "50x60")
-    photo.prints.create!(serial_number: rand(100), format: "30x40")
-    photo.prints.create!(serial_number: rand(100), format: "18x24")
+    10.times {|index| photo.prints.create!(serial_number: index + 1, format: "50x60") }
+    50.times {|index| photo.prints.create!(serial_number: index + 1, format: "30x40") }
+    100.times {|index| photo.prints.create!(serial_number: index + 1, format: "18x24") }
   end
+  # puts "Creating one print per artwork"
+  # Artwork.posters.each do |poster|
+  #   poster.prints.create!(serial_number: rand(100), format: "50x60")
+  # end
+  # Artwork.photos.each do |photo|
+  #   photo.prints.create!(serial_number: rand(100), format: "50x60")
+  #   photo.prints.create!(serial_number: rand(100), format: "30x40")
+  #   photo.prints.create!(serial_number: rand(100), format: "18x24")
+  # end
 
   puts "Creating listings"
   poster_prices = [100, 200, 300]
@@ -120,7 +120,7 @@ Artwork.transaction do
   end
 
   # Marking some random listings as sold
-  # Listing.limit(1000).order("RANDOM()").update_all(sold_at: 2.days.ago)
+  Listing.limit(1000).order("RANDOM()").update_all(sold_at: 2.days.ago)
 end
 
 puts "Done!"

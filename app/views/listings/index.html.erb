@@ -54,6 +54,24 @@
           </div>
 
           <div class="border-b border-gray-200 py-6">
+            <h3 class="-my-3 flow-root text-gray-900 py-3 text-sm font-medium">Serial number</h3>
+            <div class="pt-6" id="filter-section-0">
+              <div class="space-y-4 flex-col flex">
+                <div class="text-sm text-gray-600 flex justify-between">
+                  <label for="min-price">Minimum Serial:</label>
+                  <span><output id="minSerial"><%= @filter.min_serial %></output></span>
+                </div>
+                <input type="range" data-reflex="change->Listing#min_serial" data-filter-id="<%= @filter.id %>" data-reflex-serialize-form="true" name="min-serial" min="1" max="199" value="<%= @filter.min_serial %>" class="accent-indigo-600" oninput="document.getElementById('minSerial').value = this.value">
+                <div class="text-sm text-gray-600 flex justify-between">
+                  <label for="max-serial">Maximum Serial:</label>
+                  <span><output id="maxSerial"><%= @filter.max_serial %></output></span>
+                </div>
+                <input type="range" min="2" max="100" data-reflex="change->Listing#max_serial" data-filter-id="<%= @filter.id %>" value="<%= @filter.max_serial %>" name="max-price" class="accent-indigo-600" oninput="document.getElementById('maxPrice').value = this.value">
+              </div>
+            </div>
+          </div>
+
+          <div class="border-b border-gray-200 py-6">
             <h3 class="-my-3 flow-root text-gray-900 py-3 text-sm font-medium">Category</h3>
             <div class="pt-6" id="filter-section-0">
               <div class="space-y-4">

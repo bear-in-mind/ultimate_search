@@ -117,7 +117,7 @@ Artwork.transaction do
   poster_prices = [100, 200, 300]
   Print.posters.each { |poster_print| poster_print.listings.create(price: poster_prices.sample) }
   illustration_prices = [200, 400, 600]
-  Print.posters.each { |poster_print| poster_print.listings.create(price: illustration_prices.sample) }
+  Print.illustrations.each { |poster_print| poster_print.listings.create(price: illustration_prices.sample) }
   sm_photo_prices = [50, 80, 100]
   Print.photos.small.each { |photo_print| photo_print.listings.create(price: sm_photo_prices.sample) }
   md_photo_prices = [100, 150, 200]

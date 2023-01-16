@@ -50,6 +50,6 @@ class ListingFilter < AllFutures::Base
   end
 
   def selected_sorting_option
-    SORTING_OPTIONS.find {|option| order_by == option[:column] && direction == option[:direction] }
+    @_selected_option ||= SORTING_OPTIONS.find {|option| order_by == option[:column] && direction == option[:direction] }
   end
 end

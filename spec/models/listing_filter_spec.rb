@@ -78,40 +78,20 @@ RSpec.describe ListingFilter, type: :model do
     end
 
     context "Sort options" do
-      it "Recent listings first (default behaviour)" do
+      specify "Recent listings first (default behaviour)" do
         filter = ListingFilter.create
         expect(filter.results.to_a).to eq([poster_listing, photo_listing_2, photo_listing])
       end
 
-      it "Most expensive first" do
+      specify "Most expensive first" do
         filter = ListingFilter.create(order_by: "price", direction: "desc")
         expect(filter.results.to_a).to eq([photo_listing, photo_listing_2, poster_listing])
       end
 
-      it "Least expensive first" do
+      specify "Least expensive first" do
         filter = ListingFilter.create(order_by: "price", direction: "asc")
         expect(filter.results.to_a).to eq([poster_listing, photo_listing_2, photo_listing])
       end
-
-      # it "Oldest artworks first" do
-      #   filter = ListingFilter.create(order_by: "artworks.year", direction: "asc")
-      #   expect(filter.results.to_a).to eq([photo_listing, photo_listing_2, poster_listing])
-      # end
-
-      # it "Most recent artworks first" do
-      #   filter = ListingFilter.create(order_by: "artworks.year", direction: "desc")
-      #   expect(filter.results.to_a).to eq([poster_listing, photo_listing, photo_listing_2])
-      # end
-
-      # it "Lowest serials first" do
-      #   filter = ListingFilter.create(order_by: "prints.serial_number", direction: "asc")
-      #   expect(filter.results.to_a).to eq([photo_listing, poster_listing, photo_listing_2])
-      # end
-
-      # it "Highest serials first" do
-      #   filter = ListingFilter.create(order_by: "prints.serial_number", direction: "desc")
-      #   expect(filter.results.to_a).to eq([photo_listing_2, poster_listing, photo_listing])
-      # end
     end
   end
 end

@@ -35,20 +35,31 @@ class ListingFilter < AllFutures::Base
     #   .order(order => direction)
     
     # Step 2
-    filtered_listings_ids = Listing.for_sale
-      .joins(print: :artwork)
+    # filtered_listings_ids = Listing.for_sale
+    #   .joins(print: :artwork)
+    #   .price_between(min_price, max_price)
+    #   .serial_between(min_serial, max_serial)
+    #   .from_categories(category)
+    #   .with_tags(tags)
+    #   .with_formats(format)
+    #   .pluck(:id)
+    
+    # Listing
+    #   .includes(artwork: {cover_image_attachment: :blob})
+    #   .where(id: filtered_listings_ids)
+    #   .reorder(order_by => direction)
+    #   .search(query)
+
+    # Step 3, this uses 46 seconds per request so you better be patient
+    artworks = Artwork.joins(:prints, :available_listings)
+      .includes(cover_image_attachment: :blob)
       .price_between(min_price, max_price)
       .serial_between(min_serial, max_serial)
       .from_categories(category)
       .with_tags(tags)
       .with_formats(format)
-      .pluck(:id)
-    
-    Listing
-      .includes(artwork: {cover_image_attachment: :blob})
-      .where(id: filtered_listings_ids)
-      .reorder(order_by => direction)
       .search(query)
+      .order(order_by => direction)
       .limit(200)
   end
 

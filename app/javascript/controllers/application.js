@@ -1,11 +1,11 @@
-import { Application } from "@hotwired/stimulus"
-import consumer from "../channels/consumer"
+import { Application } from "@hotwired/stimulus";
+import consumer from "channels/consumer";
 
-const application = Application.start()
+const application = Application.start();
 
 // Configure Stimulus development experience
-application.debug = false
-application.consumer = consumer
-window.Stimulus   = application
+application.debug = false;
+application.consumer = consumer;
+window.Stimulus = application;
 
-export { application }
+export { application };

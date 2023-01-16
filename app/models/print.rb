@@ -16,11 +16,6 @@ class Print < ApplicationRecord
     50x60
   ]
 
-  CONDITIONS = %w[
-    new
-    second_hand
-  ]
-
   belongs_to :artwork
   has_many :listings, dependent: :destroy
 
@@ -30,4 +25,5 @@ class Print < ApplicationRecord
 
   scope :posters, -> { joins(:artwork).merge(Artwork.posters) }
   scope :photos, -> { joins(:artwork).merge(Artwork.photos) }
+  scope :illustrations, -> { joins(:artwork).merge(Artwork.illustrations) }
 end

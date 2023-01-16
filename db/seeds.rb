@@ -19,6 +19,19 @@ def create_poster(name, filename)
   artwork
 end
 
+def create_illustration(name, filename, tags)
+  artwork = Artwork.create!(
+    name: name,
+    category: "illustration",
+    author: "Brice Lenoble",
+    year: (2008..2020).to_a.sample,
+    tags: tags
+  )
+  file = File.open(Rails.root.join("artworks", "Poster_#{filename}.png"))
+  artwork.cover_image.attach(io: file, filename: file.path)
+  artwork
+end
+
 def create_photo(name, filename, tags, author: "Louis Sommer", year: nil)
   artwork = Artwork.create!(
     name: name,
@@ -48,6 +61,17 @@ Artwork.transaction do
   create_poster "Pierrot Le Fou", "pierrot"
   create_poster "The Godfather", "the_godfather"
   create_poster "Top Gun", "top_gun"
+
+  puts "Creating illustrations"
+  create_illustration "A Rainmaker", "Arainmaker", %w[Music Color]
+  create_illustration "Puzzle", "BBB", %w[Music Color]
+  create_illustration "Biche", "Biche", %w[Music Color]
+  create_illustration "Cesar Precio", "CesarPrecio", %w[Music Color]
+  create_illustration "JFK", "JFK", %w[Music B&W]
+  create_illustration "King", "King", %w[Music Color]
+  create_illustration "La Veillée Pop", "La-Veillee-Pop", %w[Music Color]
+  create_illustration "Michel Berger", "Michel-Berger", %w[Music Color]
+  create_illustration "Moritz", "Moritz", %w[Music Color]
 
   puts "Creating photos"
   create_photo "Pont Charles de Gaulle", "photo-01", %w[Color Sunset Landscape Paris]
@@ -84,28 +108,24 @@ Artwork.transaction do
   gilden_1 = create_photo "Yakuzas", "gilden-1", %w[B&W Street], author: "Bruce Gilden", year: 1976
   gilden_2 = create_photo "Brooklyn party", "gilden-2", %w[B&W Street USA], author: "Bruce Gilden", year: 1980
 
-  # puts "Creating all prints for every size"
-  # Artwork.posters.each do |poster|
-  #   100.times {|index| poster.prints.create!(serial_number: index + 1, format: "50x60") }
-  # end
-  # Artwork.photos.each do |photo|
-  #   10.times {|index| photo.prints.create!(serial_number: index + 1, format: "50x60") }
-  #   50.times {|index| photo.prints.create!(serial_number: index + 1, format: "30x40") }
-  #   100.times {|index| photo.prints.create!(serial_number: index + 1, format: "18x24") }
-  # end
   puts "Creating one print per artwork"
-  Artwork.posters.each do |poster|
-    poster.prints.create!(serial_number: rand(100), format: "50x60")
+  Artwork.posters.each_with_index do |poster, index|
+    poster.prints.create!(serial_number: (index + 2) *2, format: "50x60")
   end
-  Artwork.photos.each do |photo|
-    photo.prints.create!(serial_number: rand(100), format: "50x60")
-    photo.prints.create!(serial_number: rand(100), format: "30x40")
-    photo.prints.create!(serial_number: rand(100), format: "18x24")
+  Artwork.illustrations.each_with_index do |poster, index|
+    poster.prints.create!(serial_number: (index + 2) *2, format: "30x40")
+  end
+  Artwork.photos.each_with_index do |photo, index|
+    photo.prints.create!(serial_number: (index + 2) *2, format: "50x60")
+    photo.prints.create!(serial_number: (index + 2) *2, format: "30x40")
+    photo.prints.create!(serial_number: (index + 2) *2, format: "18x24")
   end
 
   puts "Creating listings"
   poster_prices = [100, 200, 300]
   Print.posters.each { |poster_print| poster_print.listings.create(price: poster_prices.sample) }
+  illustration_prices = [200, 400, 600]
+  Print.illustrations.each { |poster_print| poster_print.listings.create(price: illustration_prices.sample) }
   sm_photo_prices = [50, 80, 100]
   Print.photos.small.each { |photo_print| photo_print.listings.create(price: sm_photo_prices.sample) }
   md_photo_prices = [100, 150, 200]
@@ -115,12 +135,9 @@ Artwork.transaction do
   
   [depardon_1 ,depardon_2 ,erwitt_1 ,erwitt_2 ,gilden_1 ,gilden_2].each do |vintage_artwork|
     # Creating a unique print and a unique listing for each
-    print = vintage_artwork.prints.create(serial_number: rand(500), format: Print::FORMATS.sample)
+    print = vintage_artwork.prints.create(serial_number: rand(1..500), format: Print::FORMATS.sample)
     print.listings.create(price: rand(2000..5000))
   end
-
-  # Marking some random listings as sold
-  # Listing.limit(1000).order("RANDOM()").update_all(sold_at: 2.days.ago)
 end
 
 puts "Done!"

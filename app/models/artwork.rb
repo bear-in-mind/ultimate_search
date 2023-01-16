@@ -23,6 +23,7 @@ class Artwork < ApplicationRecord
     Animals
     Sunset
     Cinema
+    Music
   ]
 
   CATEGORIES = %w[
@@ -36,6 +37,7 @@ class Artwork < ApplicationRecord
   has_many :available_listings, -> { where(sold_at: nil) }, through: :prints, source: :listings
   
   scope :posters, -> { where(category: "poster") }
+  scope :illustrations, -> { where(category: "illustration") }
   scope :photos, -> { where(category: "photography") }
 
   scope :price_between,   ->(min, max) { joins(:listings).where(listings: {price: min..max}) }

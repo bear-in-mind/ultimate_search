@@ -15,6 +15,8 @@ class ListingsController < ApplicationController
       :query,
       :min_price,
       :max_price,
+      :max_serial,
+      :min_serial,
       :page, 
       :order_by, 
       :direction,

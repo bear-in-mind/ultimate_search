@@ -66,7 +66,7 @@
                   <label for="max-serial">Maximum Serial:</label>
                   <span><output id="maxSerial"><%= @filter.max_serial %></output></span>
                 </div>
-                <input type="range" min="2" max="100" data-reflex="change->Listing#max_serial" data-filter-id="<%= @filter.id %>" value="<%= @filter.max_serial %>" name="max-price" class="accent-indigo-600" oninput="document.getElementById('maxPrice').value = this.value">
+                <input type="range" min="2" max="100" data-reflex="change->Listing#max_serial" data-filter-id="<%= @filter.id %>" value="<%= @filter.max_serial %>" name="max-price" class="accent-indigo-600" oninput="document.getElementById('maxSerial').value = this.value">
               </div>
             </div>
           </div>

@@ -1,6 +1,6 @@
-import StimulusReflex from "stimulus_reflex"; // <-- add this
-import { application } from "./application";
-import { cable } from "@hotwired/turbo-rails"; // <-- add this
+import StimulusReflex from "stimulus_reflex";
+import { application } from "controllers/application";
+import { cable } from "@hotwired/turbo-rails";
 
 // Eager load all controllers defined in the import map under controllers/\*\*/\*_controller
 import { eagerLoadControllersFrom } from "@hotwired/stimulus-loading";
@@ -11,6 +11,6 @@ eagerLoadControllersFrom("controllers", application);
 // lazyLoadControllersFrom("controllers", application)
 
 // initialize StimulusReflex w/top-level await
-const consumer = await cable.getConsumer()
+const consumer = await cable.getConsumer();
 StimulusReflex.initialize(application);
-application.consumer = consumer
+application.consumer = consumer;

@@ -1,2 +1,2 @@
-import './cable_ready'
-import './mrujs'
+// import './cable_ready'
+// import './mrujs'

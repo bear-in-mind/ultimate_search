@@ -100,14 +100,6 @@ Artwork.transaction do
   create_photo "Tunnel View", "photo-26", %w[Color Landscape USA]
   create_photo "Valley View", "photo-27", %w[B&W Landscape USA]
 
-  puts "Creating photos for vintage prints"
-  depardon_1 = create_photo "Liban", "depardon-2", %w[Color Street], author: "Raymond Depardon", year: 1972
-  depardon_2 = create_photo "Chambre", "depardon-1", %w[Color], author: "Raymond Depardon", year: 1986
-  erwitt_1 = create_photo "Untitled", "erwitt-1", %w[B&W Animals Street], author: "Elliott Erwitt", year: 1965
-  erwitt_2 = create_photo "Bulldog", "erwitt-2", %w[B&W Animals], author: "Elliott Erwitt", year: 1968
-  gilden_1 = create_photo "Yakuzas", "gilden-1", %w[B&W Street], author: "Bruce Gilden", year: 1976
-  gilden_2 = create_photo "Brooklyn party", "gilden-2", %w[B&W Street USA], author: "Bruce Gilden", year: 1980
-
   puts "Creating one print per artwork"
   Artwork.posters.each_with_index do |poster, index|
     poster.prints.create!(serial_number: (index + 2) *2, format: "50x60")
@@ -132,6 +124,14 @@ Artwork.transaction do
   Print.photos.medium.each { |photo_print| photo_print.listings.create(price: md_photo_prices.sample) }
   lg_photo_prices = [200, 500, 1000]
   Print.photos.large.each { |photo_print| photo_print.listings.create(price: lg_photo_prices.sample) }
+  
+  puts "Creating photos for vintage prints"
+  depardon_1 = create_photo "Liban", "depardon-2", %w[Color Street], author: "Raymond Depardon", year: 1972
+  depardon_2 = create_photo "Chambre", "depardon-1", %w[Color], author: "Raymond Depardon", year: 1986
+  erwitt_1 = create_photo "Untitled", "erwitt-1", %w[B&W Animals Street], author: "Elliott Erwitt", year: 1965
+  erwitt_2 = create_photo "Bulldog", "erwitt-2", %w[B&W Animals], author: "Elliott Erwitt", year: 1968
+  gilden_1 = create_photo "Yakuzas", "gilden-1", %w[B&W Street], author: "Bruce Gilden", year: 1976
+  gilden_2 = create_photo "Brooklyn party", "gilden-2", %w[B&W Street USA], author: "Bruce Gilden", year: 1980
   
   [depardon_1 ,depardon_2 ,erwitt_1 ,erwitt_2 ,gilden_1 ,gilden_2].each do |vintage_artwork|
     # Creating a unique print and a unique listing for each

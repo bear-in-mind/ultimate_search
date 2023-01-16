@@ -64,7 +64,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_02_231224) do
   create_table "prints", force: :cascade do |t|
     t.integer "serial_number"
     t.string "format"
-    t.string "condition", default: "new"
     t.bigint "artwork_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

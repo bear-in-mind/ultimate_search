@@ -32,10 +32,16 @@ class ListingReflex < ApplicationReflex
     end
   end
 
-  def pagination
+  def paginate
     update_listing_filter do |filter|
-      filter.page = element.value
+      filter.page = element.dataset.page
     end
+  end
+
+  def clear
+    ListingFilter.find(element.dataset.filter_id).destroy
+    @filter = ListingFilter.create
+    cable_ready.push_state(url: request.path)
   end
 
   private
@@ -44,7 +50,7 @@ class ListingReflex < ApplicationReflex
     @filter = ListingFilter.find(element.dataset.filter_id)
     yield @filter
     @filter.save
-    # Take care of updating search params
-    # cable_ready.push_state(url: "#{request.path}?#{@filter.as_params}")
+    # Updating URL with filter state
+    cable_ready.push_state(url: "#{request.path}?#{@filter.attributes.to_query}")
   end
 end

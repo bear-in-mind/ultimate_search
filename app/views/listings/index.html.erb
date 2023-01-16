@@ -34,7 +34,7 @@
         <!-- Search -->
 
         <!-- Filters -->
-        <form class="block">
+        <div class="block">
           <div class="border-b border-gray-200 py-6">
             <h3 class="-my-3 flow-root text-gray-900 py-3 text-sm font-medium">Price</h3>
             <div class="pt-6" id="filter-section-0">
@@ -96,7 +96,10 @@
               </div>
             </div>
           </div>
-        </form>
+          <div class="pt-4">
+            <a href="#" data-reflex="click->Listing#clear" data-filter-id="<%= @filter.id %>" class="text-gray-800 hover:text-indigo-400 font-medium">Clear all</a>
+          </div>
+        </div>
 
         <!-- Product grid -->
         <div class="lg:col-span-3">
@@ -135,7 +138,7 @@
           </div>
           <div class="md:flex justify-between px-4">
             <span class="text-gray-500 text-sm"><%== pagy_info(@pagy, item_name: "prints") %></span>
-            <%== render "listings/paginator", pagy: @pagy,  %>
+            <%== render "pagy_nav", pagy: @pagy, filter: @filter %>
           </div>
         </div>
       </div>

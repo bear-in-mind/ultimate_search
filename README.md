@@ -1,24 +1,13 @@
-# README
+# The Ultimate Search for Rails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The demo app to illustrate [this post on DEV.to](https://dev.to/lso/the-ultimate-search-for-rails-episode-1-1mi)
+Chek out the [live app](https://search-paradise.fly.dev/)
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This app runs on Rails 7.1 on `importmaps`, and Ruby 3.2. 
+Just make sure `redis` is running, then :
+```
+# If you have overmind
+overmind start -f  Procfile.dev
+# Otherwise
+rails s
+```

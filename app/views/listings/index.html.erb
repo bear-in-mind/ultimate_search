@@ -48,7 +48,7 @@
                   <label for="max-price">Maximum Price:</label>
                   <span><output id="maxPrice"><%= @filter.max_price %></output> $</span>
                 </div>
-                <input type="range" min="50" max="<%= @filter.max_price %>" data-reflex="change->Listing#max_price" data-filter-id="<%= @filter.id %>" value="<%= @filter.max_price %>" name="max-price" class="accent-indigo-600" oninput="document.getElementById('maxPrice').value = this.value">
+                <input type="range" min="50" max="<%= Listing.max_price %>" data-reflex="change->Listing#max_price" data-filter-id="<%= @filter.id %>" value="<%= @filter.max_price %>" name="max-price" class="accent-indigo-600" oninput="document.getElementById('maxPrice').value = this.value">
               </div>
             </div>
           </div>

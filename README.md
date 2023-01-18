@@ -8,6 +8,7 @@ This app runs on Rails 7 with `importmaps` and Ruby 3.2.
 
 Just make sure `redis` is running, then :
 ```
+rails db:setup
 # If you have overmind
 overmind start -f  Procfile.dev
 # Otherwise

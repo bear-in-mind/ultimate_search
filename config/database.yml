@@ -23,7 +23,10 @@ default: &default
 
 development:
   <<: *default
-  database: ultimate_search_development
+  database: "ultimate_search_development"
+  username: "postgres"
+  password: "password"
+  host: "localhost"
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.

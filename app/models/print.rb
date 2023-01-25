@@ -30,4 +30,5 @@ class Print < ApplicationRecord
 
   scope :posters, -> { joins(:artwork).merge(Artwork.posters) }
   scope :photos, -> { joins(:artwork).merge(Artwork.photos) }
+  scope :illustrations, -> { joins(:artwork).merge(Artwork.illustrations) }
 end

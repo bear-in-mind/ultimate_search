@@ -26,7 +26,8 @@ development:
   database: "ultimate_search_development"
   username: "postgres"
   password: "password"
-  host: "localhost"
+  host: "0.0.0.0"
+  socket: "/var/run/postgresql/.s.PGSQL.5432"
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.

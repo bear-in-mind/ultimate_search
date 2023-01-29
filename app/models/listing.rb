@@ -11,6 +11,7 @@
 #
 class Listing < ApplicationRecord
   include PgSearch::Model
+  searchkick
 
   belongs_to :print
   has_one :artwork, through: :print
@@ -25,7 +26,7 @@ class Listing < ApplicationRecord
   scope :from_categories, ->(options) { joins(:artwork).where(artworks: {category: options}) if options.present? }
   # Will work as an OR filter
   scope :with_tags,       ->(options) { joins(:artwork).where("artworks.tags && ?", "{#{options.join(",")}}") if options.present? }
-  scope :search,          ->(query) { basic_search(query) if query.present? }
+  # scope :search,          ->(query) { basic_search(query) if query.present? }
 
   pg_search_scope :basic_search,
     associated_against: {

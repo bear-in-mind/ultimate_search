@@ -101,9 +101,18 @@ GEM
       irb (>= 1.5.0)
       reline (>= 0.3.1)
     diff-lcs (1.5.0)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     erubi (1.12.0)
+    faraday (2.7.4)
+      faraday-net_http (>= 2.0, < 3.1)
+      ruby2_keywords (>= 0.0.4)
+    faraday-net_http (3.0.2)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    hashie (5.0.0)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.1.5)
@@ -132,6 +141,7 @@ GEM
     mini_portile2 (2.8.1)
     minitest (5.17.0)
     msgpack (1.6.0)
+    multi_json (1.15.0)
     net-imap (0.3.4)
       date
       net-protocol
@@ -145,6 +155,14 @@ GEM
     nokogiri (1.13.10)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
+    opensearch-api (2.1.0)
+      multi_json
+    opensearch-ruby (2.1.0)
+      opensearch-api (~> 2.1)
+      opensearch-transport (~> 2.0)
+    opensearch-transport (2.1.0)
+      faraday (>= 1.0, < 3)
+      multi_json
     pagy (6.0.0)
     permessage_deflate (0.1.4)
     pg (1.4.5)
@@ -207,6 +225,10 @@ GEM
       rspec-mocks (~> 3.11)
       rspec-support (~> 3.11)
     rspec-support (3.12.0)
+    ruby2_keywords (0.0.5)
+    searchkick (5.1.1)
+      activemodel (>= 5.2)
+      hashie
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -259,8 +281,10 @@ DEPENDENCIES
   annotate
   bootsnap
   debug
+  dotenv-rails
   importmap-rails
   jbuilder
+  opensearch-ruby (~> 2.1)
   pagy
   permessage_deflate (>= 0.1)
   pg (~> 1.1)
@@ -270,6 +294,7 @@ DEPENDENCIES
   redis (~> 4.0)
   redis-session-store (~> 0.11.5)
   rspec-rails (~> 6.0.0)
+  searchkick (~> 5.1)
   sprockets-rails
   stimulus-rails
   stimulus_reflex (= 3.5.0.pre8)

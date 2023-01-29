@@ -51,10 +51,18 @@ gem "bootsnap", require: false
 # Use Sass to process CSS
 # gem "sassc-rails"
 
+gem "action-cable-redis-backport", "~> 1"
+gem "redis-session-store", "~> 0.11.5"
+gem "permessage_deflate", ">= 0.1"
+gem "stimulus_reflex", "= 3.5.0.pre8"
+gem "searchkick", "~> 5.1"
+gem "opensearch-ruby", "~> 2.1"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem 'rspec-rails', '~> 6.0.0'
+  gem 'dotenv-rails'
 end
 
 group :development do
@@ -68,12 +76,3 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
-
-
-gem "action-cable-redis-backport", "~> 1"
-
-gem "redis-session-store", "~> 0.11.5"
-
-gem "permessage_deflate", ">= 0.1"
-
-gem "stimulus_reflex", "= 3.5.0.pre8"

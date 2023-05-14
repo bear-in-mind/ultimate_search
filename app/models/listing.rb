@@ -16,9 +16,9 @@ class Listing < ApplicationRecord
   belongs_to :print
   has_one :artwork, through: :print
 
-  delegate :name, :cover_image, :author, :year, to: :artwork
+  delegate :name, :cover_image, :author, :year, :category, :tags, to: :artwork
   delegate :serial_number, :format, to: :print
-  
+
   scope :for_sale,        -> { where(sold_at: nil) }
   scope :price_between,   ->(min, max) { where(price: min..max) }
   scope :serial_between,   ->(min, max) { joins(:print).where(prints: {serial_number: min..max}) }
@@ -27,6 +27,8 @@ class Listing < ApplicationRecord
   # Will work as an OR filter
   scope :with_tags,       ->(options) { joins(:artwork).where("artworks.tags && ?", "{#{options.join(",")}}") if options.present? }
   # scope :search,          ->(query) { basic_search(query) if query.present? }
+  scope :search_import, -> { for_sale.includes(print: :artwork) }
+
 
   pg_search_scope :basic_search,
     associated_against: {
@@ -42,4 +44,25 @@ class Listing < ApplicationRecord
       Listing.for_sale.maximum(:price) || 10_000
     end
   end
+
+  private
+
+  # Using ruby shorthand hash syntax here, thanks to our delegate methods
+  def search_data
+    {
+      price:,
+      sold_at:,
+      format:,
+      serial_number:,
+      created_at:,
+      category:,
+      name:,
+      tags:,
+      author:,
+      year:,
+      print_id: print.id,
+      artwork_id: print.artwork_id,
+    }
+  end
+
 end

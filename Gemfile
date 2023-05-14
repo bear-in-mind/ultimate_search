@@ -65,6 +65,10 @@ group :development, :test do
   gem 'dotenv-rails'
 end
 
+group :test do
+  gem "database_cleaner-active_record"
+end
+
 group :development do
   gem "annotate"
   # Use console on exceptions pages [https://github.com/rails/web-console]
